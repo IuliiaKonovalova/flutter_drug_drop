@@ -49,7 +49,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   // int _counter = 0;
-  Color color = Colors.black;
+  // Color color = Colors.black;
+  Color caughtColor = Color.fromARGB(255, 248, 94, 235);
 
   void _incrementCounter() {
     setState(() {
@@ -64,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final showDraggable = color == Colors.black;
+    // final showDraggable = color == Colors.black;
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -82,50 +83,116 @@ class _MyHomePageState extends State<MyHomePage> {
         // in the middle of the parent.
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            DragTarget<Color>(
-              onAccept: (data) {
-                setState(() {
-                  color = data;
-                });
-              },
-              builder: (context, _, __) {
-                return Container(
-                  width: 200,
-                  height: 200,
-                  color: color,
-                );
-              },
-              // onWillAccept: (data) {
-              //   return true;
-              // },
+          children: <Widget>[
+            Row(
+              children: [
+                DragTarget<Color>(
+                  onAccept: (Color color) {
+                    caughtColor = color;
+                  },
+                  builder: (
+                    BuildContext context,
+                    List<dynamic> acceptedData,
+                    List<dynamic> rejectedData,
+                  ) {
+                    return Container(
+                      width: 200,
+                      height: 200,
+                      color: acceptedData.isEmpty
+                          ? caughtColor
+                          : Color.fromARGB(255, 89, 89, 89),
+                      child: const Center(
+                        child: Text('1st container'),
+                      ),
+                    );
+                  },
+                  // onWillAccept: (data) {
+                  //   return true;
+                  // },
+                ),
+                DragTarget<Color>(
+                  onAccept: (Color color) {
+                    caughtColor = color;
+                  },
+                  builder: (
+                    BuildContext context,
+                    List<dynamic> acceptedData,
+                    List<dynamic> rejectedData,
+                  ) {
+                    return Container(
+                      width: 200,
+                      height: 200,
+                      color: acceptedData.isEmpty
+                          ? caughtColor
+                          : Color.fromARGB(255, 89, 89, 89),
+                      child: const Center(
+                        child: Text('2nd container'),
+                      ),
+                    );
+                  },
+                  // onWillAccept: (data) {
+                  //   return true;
+                  // },
+                ),
+                DragTarget<Color>(
+                  onAccept: (Color color) {
+                    caughtColor = color;
+                  },
+                  builder: (
+                    BuildContext context,
+                    List<dynamic> acceptedData,
+                    List<dynamic> rejectedData,
+                  ) {
+                    return Container(
+                      width: 200,
+                      height: 200,
+                      color: acceptedData.isEmpty
+                          ? caughtColor
+                          : Color.fromARGB(255, 89, 89, 89),
+                      child: const Center(
+                        child: Text('3rd container'),
+                      ),
+                    );
+                  },
+                  // onWillAccept: (data) {
+                  //   return true;
+                  // },
+                ),
+              ],
             ),
-            IgnorePointer(
-                ignoring: !showDraggable,
-                child: Opacity(
-                  opacity: showDraggable ? 1 : 0,
-                  child: Draggable<Color>(
-                    data: Colors.green,
-                    child: Container(
-                      width: 200,
-                      height: 200,
-                      color: Colors.green,
-                      child: Text('Draggable'),
-                    ),
-                    feedback: Container(
-                      width: 200,
-                      height: 200,
-                      color: Colors.orange,
-                      child: Text('Feedback'),
-                    ),
-                    childWhenDragging: Container(
-                      width: 200,
-                      height: 200,
-                      color: Colors.red,
-                      child: Text('Child When Dragging'),
+            Draggable<Color>(
+              data: Colors.green,
+              child: Container(
+                width: 100,
+                height: 100,
+                color: Colors.green,
+                child: Text('Draggable'),
+              ),
+              feedback: Container(
+                width: 150,
+                height: 150,
+                color: Color.fromARGB(66, 255, 153, 0),
+                child: Center(
+                  child: Text(
+                    'Feedback',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      decoration: TextDecoration.none,
                     ),
                   ),
-                )),
+                ),
+              ),
+              childWhenDragging: Container(
+                width: 200,
+                height: 200,
+                color: Colors.red,
+                child: Text('Child When Dragging'),
+              ),
+              onDraggableCanceled: (velocity, offset) => setState(() {
+                caughtColor = Color.fromARGB(255, 159, 92, 92);
+              }),
+            ),
           ],
         ),
       ),
