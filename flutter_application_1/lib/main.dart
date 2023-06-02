@@ -48,7 +48,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  // int _counter = 0;
+  Color color = Colors.black;
 
   void _incrementCounter() {
     setState(() {
@@ -57,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+      // _counter++;
     });
   }
 
@@ -78,22 +79,44 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Draggable(
-          child: Container(
-            width: 200,
-            height: 200,
-            color: Colors.green,
-          ),
-          feedback: Container(
-            width: 200,
-            height: 200,
-            color: Colors.orange,
-          ),
-          childWhenDragging: Container(
-            width: 200,
-            height: 200,
-            color: Colors.red,
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            DragTarget<Color>(
+              builder: (context, candidateData, rejectedData) {
+                return Container(
+                  width: 200,
+                  height: 200,
+                  color: color,
+                );
+              },
+              // onWillAccept: (data) {
+              //   return true;
+              // },
+              onAccept: (data) {
+                setState(() {
+                  color = data;
+                });
+              },
+            ),
+            Draggable<Color>(
+              child: Container(
+                width: 200,
+                height: 200,
+                color: Colors.green,
+              ),
+              feedback: Container(
+                width: 200,
+                height: 200,
+                color: Colors.orange,
+              ),
+              childWhenDragging: Container(
+                width: 200,
+                height: 200,
+                color: Colors.red,
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
