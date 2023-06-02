@@ -64,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final showDraggable = color == Colors.black;
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -83,7 +84,12 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             DragTarget<Color>(
-              builder: (context, candidateData, rejectedData) {
+              onAccept: (data) {
+                setState(() {
+                  color = data;
+                });
+              },
+              builder: (context, _, __) {
                 return Container(
                   width: 200,
                   height: 200,
@@ -93,29 +99,33 @@ class _MyHomePageState extends State<MyHomePage> {
               // onWillAccept: (data) {
               //   return true;
               // },
-              onAccept: (data) {
-                setState(() {
-                  color = data;
-                });
-              },
             ),
-            Draggable<Color>(
-              child: Container(
-                width: 200,
-                height: 200,
-                color: Colors.green,
-              ),
-              feedback: Container(
-                width: 200,
-                height: 200,
-                color: Colors.orange,
-              ),
-              childWhenDragging: Container(
-                width: 200,
-                height: 200,
-                color: Colors.red,
-              ),
-            ),
+            IgnorePointer(
+                ignoring: !showDraggable,
+                child: Opacity(
+                  opacity: showDraggable ? 1 : 0,
+                  child: Draggable<Color>(
+                    data: Colors.green,
+                    child: Container(
+                      width: 200,
+                      height: 200,
+                      color: Colors.green,
+                      child: Text('Draggable'),
+                    ),
+                    feedback: Container(
+                      width: 200,
+                      height: 200,
+                      color: Colors.orange,
+                      child: Text('Feedback'),
+                    ),
+                    childWhenDragging: Container(
+                      width: 200,
+                      height: 200,
+                      color: Colors.red,
+                      child: Text('Child When Dragging'),
+                    ),
+                  ),
+                )),
           ],
         ),
       ),
