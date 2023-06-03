@@ -77,6 +77,18 @@ class HomePage extends StatelessWidget {
               );
             },
           ),
+          // DraggableColumnPage
+          ElevatedButton(
+            child: const Text('Draggable Columns'),
+            // icon: Icon(Icons.arrow_forward),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const DraggableColumnPage()),
+              );
+            },
+          ),
         ],
       ),
       body: const Center(
