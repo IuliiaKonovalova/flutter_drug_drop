@@ -27,6 +27,18 @@ final allAnimals = [
     type: AnimalType.land,
     imageUrl: 'assets/images/land/dog-4.png',
   ),
+  const Animal(
+    type: AnimalType.air,
+    imageUrl: 'assets/images/air/bird-1.png',
+  ),
+  const Animal(
+    type: AnimalType.air,
+    imageUrl: 'assets/images/air/bird-2.png',
+  ),
+  const Animal(
+    type: AnimalType.air,
+    imageUrl: 'assets/images/air/bird-3.png',
+  ),
 ];
 
 class Animal {
@@ -54,6 +66,6 @@ class Animal {
 
 enum AnimalType {
   land,
-  sea,
   air,
+  sea,
 }
