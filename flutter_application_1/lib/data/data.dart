@@ -39,6 +39,54 @@ final allAnimals = [
     type: AnimalType.air,
     imageUrl: 'assets/images/air/bird-3.png',
   ),
+  const Animal(
+    type: AnimalType.sea,
+    imageUrl: 'assets/images/sea/fish-1.png',
+  ),
+  const Animal(
+    type: AnimalType.sea,
+    imageUrl: 'assets/images/sea/fish-2.png',
+  ),
+  const Animal(
+    type: AnimalType.sea,
+    imageUrl: 'assets/images/sea/shark-1.png',
+  ),
+  const Animal(
+    type: AnimalType.sea,
+    imageUrl: 'assets/images/sea/shark-2.png',
+  ),
+  const Animal(
+    type: AnimalType.sea,
+    imageUrl: 'assets/images/sea/shark-3.png',
+  ),
+  const Animal(
+    type: AnimalType.sea,
+    imageUrl: 'assets/images/sea/whale-1.png',
+  ),
+  const Animal(
+    type: AnimalType.sea,
+    imageUrl: 'assets/images/sea/whale-2.png',
+  ),
+  const Animal(
+    type: AnimalType.sea,
+    imageUrl: 'assets/images/sea/whale-3.png',
+  ),
+  const Animal(
+    type: AnimalType.sea,
+    imageUrl: 'assets/images/sea/whale-4.png',
+  ),
+  const Animal(
+    type: AnimalType.sea,
+    imageUrl: 'assets/images/sea/whale-5.png',
+  ),
+  const Animal(
+    type: AnimalType.sea,
+    imageUrl: 'assets/images/sea/whale-6.png',
+  ),
+  const Animal(
+    type: AnimalType.sea,
+    imageUrl: 'assets/images/sea/whale-7.png',
+  ),
 ];
 
 class Animal {
