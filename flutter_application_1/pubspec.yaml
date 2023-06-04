@@ -70,6 +70,18 @@ flutter:
     - assets/images/land/dog-2.png
     - assets/images/land/dog-3.png
     - assets/images/land/dog-4.png
+    - assets/images/sea/fish-1.png
+    - assets/images/sea/fish-2.png
+    - assets/images/sea/shark-1.png
+    - assets/images/sea/shark-2.png
+    - assets/images/sea/shark-3.png
+    - assets/images/sea/whale-1.png
+    - assets/images/sea/whale-2.png
+    - assets/images/sea/whale-3.png
+    - assets/images/sea/whale-4.png
+    - assets/images/sea/whale-5.png
+    - assets/images/sea/whale-6.png
+    - assets/images/sea/whale-7.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
