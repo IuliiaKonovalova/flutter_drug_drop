@@ -18,20 +18,24 @@ class DraggableColumnPage extends StatefulWidget {
 
 class _DraggableColumnPageState extends State<DraggableColumnPage> {
   final List<Animal> all = allAnimals;
+
   final List<Animal> air = [];
   final List<Animal> land = [];
+  final List<Animal> sea = [];
   int score = 0;
 
   void removeAll(Animal toRemove) {
     all.removeWhere((animal) => animal.imageUrl == toRemove.imageUrl);
     land.removeWhere((animal) => animal.imageUrl == toRemove.imageUrl);
     air.removeWhere((animal) => animal.imageUrl == toRemove.imageUrl);
+    sea.removeWhere((animal) => animal.imageUrl == toRemove.imageUrl);
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
         // appBar: buildAppBar(score: score);
         // appBar:add app bar with score
+
         appBar: AppBar(
           title: const Text('Columns Draggable'),
           actions: <Widget>[
@@ -83,7 +87,7 @@ class _DraggableColumnPageState extends State<DraggableColumnPage> {
                       ),
                     ),
                     Text(
-                      'Birds',
+                      'Air',
                       style: TextStyle(
                         fontSize: 24,
                         color: Colors.white,
@@ -91,6 +95,13 @@ class _DraggableColumnPageState extends State<DraggableColumnPage> {
                     ),
                     Text(
                       'Animals',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'Sea',
                       style: TextStyle(
                         fontSize: 24,
                         color: Colors.white,
@@ -124,7 +135,7 @@ class _DraggableColumnPageState extends State<DraggableColumnPage> {
                     ),
                     buildTarget(
                       context,
-                      text: 'Birds',
+                      text: 'Air',
                       animals: air,
                       acceptTypes: [AnimalType.air],
                       // onAccept: (data) => addAnimal(data),
@@ -143,13 +154,32 @@ class _DraggableColumnPageState extends State<DraggableColumnPage> {
                     ),
                     buildTarget(
                       context,
-                      text: 'Animals',
+                      text: 'Land',
                       animals: land,
                       acceptTypes: [AnimalType.land],
                       // onAccept: (data) => addAnimal(data),
                       onAccept: (data) => setState(() {
                         removeAll(data);
                         land.add(data);
+                        // all.removeWhere(
+                        //     (animal) => animal.imageUrl == data.imageUrl);
+                        print('data: $data');
+                      }),
+                    ),
+                    const VerticalDivider(
+                      color: Colors.white,
+                      thickness: 20,
+                      width: 20,
+                    ),
+                    buildTarget(
+                      context,
+                      text: 'Sea',
+                      animals: sea,
+                      acceptTypes: [AnimalType.sea],
+                      // onAccept: (data) => addAnimal(data),
+                      onAccept: (data) => setState(() {
+                        removeAll(data);
+                        sea.add(data);
                         // all.removeWhere(
                         //     (animal) => animal.imageUrl == data.imageUrl);
                         print('data: $data');
@@ -180,50 +210,62 @@ class _DraggableColumnPageState extends State<DraggableColumnPage> {
   }) =>
       Flexible(
         flex: 1,
-
-        // radius: 75,
-        // backgroundColor: Colors.blue,
-        child: DragTarget<Animal>(
-          builder: (context, candidateData, rejectedData) => Center(
-            child: Stack(
-              children: [
-                ...animals
-                    .map((animal) => DraggableWidget(
-                          animal: animal,
-                        ))
-                    .toList(),
-                IgnorePointer(
-                  child: Center(
-                    child: buildText(text),
-                  ),
+        // set gap between columns
+        fit: FlexFit.tight,
+        child: Container(
+          // flex: 1
+          // width: 100,
+          height: 800,
+          // add background color
+          color: Colors.blue,
+          // radius: 75,
+          // backgroundColor: Colors.blue,
+          child: DragTarget<Animal>(
+            builder: (context, candidateData, rejectedData) => Center(
+              child: SingleChildScrollView(
+                child: Column(
+                  // how to set column to 100% height
+                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ...animals
+                        .map((animal) => DraggableWidget(
+                              animal: animal,
+                            ))
+                        .toList(),
+                    IgnorePointer(
+                      child: Center(
+                        child: buildText(text),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
+            // onWillAccept: (data) => data!.type == acceptType,
+            onWillAccept: (data) => true,
+            onAccept: (data) {
+              if (acceptTypes.contains(data.type)) {
+                print('data: $data');
+                print('Type: ${data.type}');
+                Utils.showSnackBar(context, const Text('This is correct!'),
+                    color: Colors.green);
+                setState(() {
+                  score += 1;
+                  // all.removeWhere((animal) => animal.imageUrl == data.imageUrl);
+                });
+              } else {
+                print('data: $data');
+                print('Type: ${data.type}');
+                Utils.showSnackBar(context, const Text('This is wrong!!'),
+                    color: Colors.red);
+                setState(() {
+                  score -= 1;
+                  // all.removeWhere((animal) => animal.imageUrl == data.imageUrl);
+                });
+              }
+              onAccept(data);
+            },
           ),
-          // onWillAccept: (data) => data!.type == acceptType,
-          onWillAccept: (data) => true,
-          onAccept: (data) {
-            if (acceptTypes.contains(data.type)) {
-              print('data: $data');
-              print('Type: ${data.type}');
-              Utils.showSnackBar(context, const Text('This is correct!'),
-                  color: Colors.green);
-              setState(() {
-                score += 1;
-                // all.removeWhere((animal) => animal.imageUrl == data.imageUrl);
-              });
-            } else {
-              print('data: $data');
-              print('Type: ${data.type}');
-              Utils.showSnackBar(context, const Text('This is wrong!!'),
-                  color: Colors.red);
-              setState(() {
-                score -= 1;
-                // all.removeWhere((animal) => animal.imageUrl == data.imageUrl);
-              });
-            }
-            onAccept(data);
-          },
         ),
       );
 
