@@ -40,6 +40,50 @@ final allAnimals = [
     imageUrl: 'assets/images/air/bird-3.png',
   ),
   const Animal(
+    type: AnimalType.air,
+    imageUrl: 'assets/images/air/bird-4.png',
+  ),
+  const Animal(
+    type: AnimalType.air,
+    imageUrl: 'assets/images/air/bird-5.png',
+  ),
+  const Animal(
+    type: AnimalType.air,
+    imageUrl: 'assets/images/air/bird-6.png',
+  ),
+  const Animal(
+    type: AnimalType.air,
+    imageUrl: 'assets/images/air/bird-7.png',
+  ),
+  const Animal(
+    type: AnimalType.air,
+    imageUrl: 'assets/images/air/bird-8.png',
+  ),
+  const Animal(
+    type: AnimalType.air,
+    imageUrl: 'assets/images/air/bird-9.png',
+  ),
+  const Animal(
+    type: AnimalType.air,
+    imageUrl: 'assets/images/air/bird-10.png',
+  ),
+  const Animal(
+    type: AnimalType.air,
+    imageUrl: 'assets/images/air/bird-11.png',
+  ),
+  const Animal(
+    type: AnimalType.air,
+    imageUrl: 'assets/images/air/bird-12.png',
+  ),
+  const Animal(
+    type: AnimalType.air,
+    imageUrl: 'assets/images/air/bird-13.png',
+  ),
+  const Animal(
+    type: AnimalType.air,
+    imageUrl: 'assets/images/air/bird-14.png',
+  ),
+  const Animal(
     type: AnimalType.sea,
     imageUrl: 'assets/images/sea/fish-1.png',
   ),
