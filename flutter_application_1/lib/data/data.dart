@@ -131,6 +131,54 @@ final allAnimals = [
     type: AnimalType.sea,
     imageUrl: 'assets/images/sea/whale-7.png',
   ),
+  const Animal(
+    type: AnimalType.land,
+    imageUrl: 'assets/images/land/horse-1.png',
+  ),
+  const Animal(
+    type: AnimalType.land,
+    imageUrl: 'assets/images/land/horse-2.png',
+  ),
+  const Animal(
+    type: AnimalType.land,
+    imageUrl: 'assets/images/land/horse-3.png',
+  ),
+  const Animal(
+    type: AnimalType.land,
+    imageUrl: 'assets/images/land/horse-4.png',
+  ),
+  const Animal(
+    type: AnimalType.land,
+    imageUrl: 'assets/images/land/kangaroo-1.png',
+  ),
+  const Animal(
+    type: AnimalType.land,
+    imageUrl: 'assets/images/land/kangaroo-2.png',
+  ),
+  const Animal(
+    type: AnimalType.land,
+    imageUrl: 'assets/images/land/kangaroo-3.png',
+  ),
+  const Animal(
+    type: AnimalType.land,
+    imageUrl: 'assets/images/land/lion-1.png',
+  ),
+  const Animal(
+    type: AnimalType.land,
+    imageUrl: 'assets/images/land/lion-2.png',
+  ),
+  const Animal(
+    type: AnimalType.land,
+    imageUrl: 'assets/images/land/lion-3.png',
+  ),
+  const Animal(
+    type: AnimalType.land,
+    imageUrl: 'assets/images/land/rabbit-1.png',
+  ),
+  const Animal(
+    type: AnimalType.land,
+    imageUrl: 'assets/images/land/rabbit-2.png',
+  ),
 ];
 
 class Animal {
