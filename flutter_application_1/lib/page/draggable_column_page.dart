@@ -109,7 +109,6 @@ class _DraggableColumnPageState extends State<DraggableColumnPage> {
                     ),
                   ],
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -123,7 +122,6 @@ class _DraggableColumnPageState extends State<DraggableColumnPage> {
                         all.add(data);
                         // all.removeWhere(
                         //     (animal) => animal.imageUrl == data.imageUrl);
-
                         print('data: $data');
                       }),
                     ),
@@ -195,12 +193,11 @@ class _DraggableColumnPageState extends State<DraggableColumnPage> {
       );
 
   Widget buildOrigin() => Stack(
-        alignment: Alignment.center,
+        alignment: Alignment.topCenter,
         children: all.map((animal) => DraggableWidget(animal: animal)).toList(),
       );
 
   // Widget buildTargets(BuildContext context) =>
-
   Widget buildTarget(
     BuildContext context, {
     required String text,
@@ -218,6 +215,7 @@ class _DraggableColumnPageState extends State<DraggableColumnPage> {
           height: 800,
           // add background color
           color: Colors.blue,
+          // align to top
           // radius: 75,
           // backgroundColor: Colors.blue,
           child: DragTarget<Animal>(
@@ -226,7 +224,12 @@ class _DraggableColumnPageState extends State<DraggableColumnPage> {
                 child: Column(
                   // how to set column to 100% height
                   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  // crossAxisAlignment: CrossAxisAlignment.stretch,
+                  // align to top
+                  // add background color for column
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    const Text('Hello'),
                     ...animals
                         .map((animal) => DraggableWidget(
                               animal: animal,
@@ -275,12 +278,6 @@ class _DraggableColumnPageState extends State<DraggableColumnPage> {
       style: const TextStyle(fontSize: 24, color: Colors.white),
     );
   }
-
-  // addAnimal(Animal data) {
-  //   setState(() {
-  //     print(data);
-  //   });
-  // }
 }
 
 class Utils {
